@@ -36,7 +36,7 @@ export default function Home() {
       <div className="container flex justify-center mx-auto my-0 space-x-4">
         <div className="border flex flex-col justify-between border-zinc-900 p-12 rounded-lg">
           <div className="mb-7">
-            <h3 className="text-4xl font-bold mb-2">Manage Your TodoList</h3>
+            <h3 className="text-4xl font-bold mb-4">Manage Your TodoList</h3>
             <p>You can record and manage to-dos. Recorded to-dos can be edited freely and checked for completion.</p>
           </div>
           <div>
@@ -49,7 +49,7 @@ export default function Home() {
         </div>
         <div className="w-1/3 border flex flex-col justify-between border-zinc-900 p-12 rounded-lg">
           <div className="mb-7">
-            <h3 className="text-4xl font-bold mb-2">Create Account</h3>
+            <h3 className="text-4xl font-bold mb-4">Create Account</h3>
             <p>By creating an account, you can create a to-do list that only you can access, and set up a profile.</p>
           </div>
           <div>
