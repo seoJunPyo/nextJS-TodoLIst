@@ -29,7 +29,7 @@ const List = [
 
 const Todos = () => {
   return (
-    <div className="container mx-auto my-14 ">
+    <div className="container mx-auto my-14 px-4">
       <TodoList todoList={List} />
       <Link
         href="/todos/create"

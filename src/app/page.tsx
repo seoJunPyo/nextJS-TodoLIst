@@ -10,9 +10,15 @@ export default function Home() {
         <div className="container flex-row space-y-6 mx-auto text-center p-12 my-7">
           <h2 className="text-4xl font-bold">TodoList developed with Next.js.</h2>
           <div>
-            <p>This web is TodoList developed with Next.js. </p>
-            <p>TodoList&apos;s data is stored and managed through Mongodb.</p>
-            <p> And it supports user authentication based on JWT token.</p>
+            <p>
+              This TodoList web is developed with <b>Next.js</b> and hosted using <b>AWS</b>.
+            </p>
+            <p>
+              TodoList&apos;s data is stored and managed through <b>Mongodb</b>.
+            </p>
+            <p>
+              And it supports user authentication based on <b>JWT</b> token.
+            </p>
           </div>
           <div className="flex space-x-2 justify-center">
             <Link
@@ -33,11 +39,11 @@ export default function Home() {
       </div>
 
       <h2 className="mt-16 mb-8 text-center font-bold text-3xl">What you can do</h2>
-      <div className="container mx-auto my-0 flex flex-col space-y-4 md:flex-row md:justify-center md:space-x-4 md:space-y-0">
+      <div className="container mx-auto my-0 flex flex-col space-y-4 px-4 md:flex-row md:justify-center md:space-x-4 md:space-y-0">
         <div className="border flex flex-col justify-between border-zinc-900 p-12 rounded-lg">
           <div className="mb-7">
-            <h3 className="text-4xl font-bold mb-4">Manage Your TodoList</h3>
-            <p>You can record and manage to-dos. Recorded to-dos can be edited freely and checked for completion.</p>
+            <h3 className="text-4xl font-bold mb-4">Manage Your Todos</h3>
+            <p>You can record and manage todos. Recorded todos can be edited freely and checked for completion.</p>
           </div>
           <div>
             <Link
@@ -55,7 +61,7 @@ export default function Home() {
           <div>
             <Link
               href="/auth/joinus"
-              className="px-4 py-3 bg-zinc-900 text-white rounded-lg  transition-all duration-200 hover:bg-zinc-800 ">
+              className="px-4 py-3 bg-zinc-900 text-white rounded-lg transition-all duration-200 hover:bg-zinc-800 ">
               Join Us!
             </Link>
           </div>
@@ -63,7 +69,7 @@ export default function Home() {
       </div>
 
       <h2 className="mt-16 mb-8 text-center font-bold text-3xl">Tech Stack</h2>
-      <div className="container mx-auto flex flex-col items-center space-y-4 md:flex-row md:justify-center md:space-x-8 md:space-y-0 md:items-start">
+      <div className="container px-4 mx-auto flex flex-col items-center space-y-4 md:overflow-y-scroll md:flex-row md:space-x-8 md:space-y-0 md:items-start lg:overflow-visible lg:justify-center">
         {TechStack.map(({ src, title, decs, href }) => (
           <Card key={src} src={src} title={title} decs={decs} href={href} />
         ))}

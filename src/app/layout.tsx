@@ -19,7 +19,7 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
     <html lang="en">
       <body className={inter.className}>
         <nav className="border-b-2 border-zinc-950">
-          <div className="container mx-auto my-0 p-3 flex justify-between ">
+          <div className="container mx-auto my-0 p-4 flex justify-between ">
             <Link href="/">
               <h1 className="text-3xl font-bold">TodoList</h1>
             </Link>
@@ -39,7 +39,7 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
           {modal}
         </main>
         <footer className="w-full mt-32 bottom-0 border-t-2 border-zinc-950">
-          <div className="container flex justify-between space-x-4 mx-auto my-0 py-6">
+          <div className="container flex justify-between space-x-4 mx-auto my-0 p-4">
             <div>
               <p className="font-bold">Seo Jun Pyo</p>
               <p className="text-sm flex space-x-1 items-center">
