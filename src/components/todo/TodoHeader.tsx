@@ -5,6 +5,7 @@ import { BsCheckAll } from 'react-icons/bs';
 import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { Select } from '..';
 import { Filter, Sort } from '@/constant/Todo';
+import { useRouter } from 'next/navigation';
 
 const TodoHeader = ({
   allChecked,
@@ -19,18 +20,42 @@ const TodoHeader = ({
   setFilter: React.Dispatch<React.SetStateAction<Filter>>;
   setSort: React.Dispatch<React.SetStateAction<Sort>>;
 }) => {
+  const router = useRouter();
+
+  const handleClickCheckAll = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    await fetch('http://localhost:3000/api/todos/', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        completed: e.target.checked,
+      }),
+    });
+
+    router.refresh();
+  };
+
+  const handleClickClearCompleted = async () => {
+    await fetch('http://localhost:3000/api/todos/', {
+      method: 'DELETE',
+    });
+
+    router.refresh();
+  };
+
   return (
     <div className="flex px-4 justify-between items-center">
       <div className="flex space-x-2">
         <label className="p-2 cursor-pointer hover:bg-zinc-100 rounded-lg">
-          <input type="checkbox" checked={allChecked} onChange={() => {}} className="hidden" />
+          <input type="checkbox" checked={allChecked} onChange={handleClickCheckAll} className="hidden" />
           <div className={`flex items-center md:space-x-1 text-2xl ${allChecked ? 'text-zinc-900' : 'text-zinc-300'}`}>
             <BsCheckAll />
             <span className="text-sm font-bold text-zinc-900 hidden md:inline">Check All</span>
           </div>
         </label>
 
-        <button className="flex items-center md:space-x-1 text-2xl p-2 hover:bg-zinc-100 rounded-lg">
+        <button
+          className="flex items-center md:space-x-1 text-2xl p-2 hover:bg-zinc-100 rounded-lg"
+          onClick={handleClickClearCompleted}>
           <IoMdRemoveCircleOutline />
           <span className="text-sm font-bold text-zinc-900 hidden md:inline">Clear Completed</span>
         </button>

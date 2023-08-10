@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 type Todo = {
-  id: string;
+  _id: string;
   completed: boolean;
   title: string;
-  decs: string;
-  createAt: Date;
+  desc: string;
+  createAt: string;
 };
 
 type Filter = 'all' | 'active' | 'completed';

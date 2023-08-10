@@ -3,21 +3,40 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-const TodoForm = ({ title, decs }: Partial<Todo>) => {
+const TodoForm = ({ _id, title, desc, method }: Partial<Todo> & { method: 'POST' | 'PATCH' }) => {
+  const titleRef = React.useRef<HTMLInputElement>(null);
+  const descRef = React.useRef<HTMLTextAreaElement>(null);
+
   const router = useRouter();
+
+  const handleClickConfirm = async () => {
+    await fetch(`http://localhost:3000/api/todos/${_id ?? ''}`, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: titleRef.current?.value ?? '',
+        desc: descRef.current?.value ?? '',
+      }),
+    });
+
+    router.back();
+    router.refresh();
+  };
 
   return (
     <>
       <span className="inline-block text-sm p-2 font-bold">Title</span>
       <input
         type="text"
+        ref={titleRef}
         defaultValue={title}
         placeholder="Title"
         className="font-bold text-3xl w-full mb-4 border-2 border-zinc-900 rounded-lg p-2"
       />
       <span className="inline-block text-sm font-bold p-2">Description</span>
       <textarea
-        defaultValue={decs}
+        ref={descRef}
+        defaultValue={desc}
         placeholder="Description"
         className="w-full border-2 border-zinc-900 rounded-lg p-2 h-32"
       />
@@ -28,7 +47,11 @@ const TodoForm = ({ title, decs }: Partial<Todo>) => {
           onClick={() => router.back()}>
           Cancel
         </button>
-        <button className="px-4 py-2 rounded-lg font-bold bg-zinc-900 text-white hover:bg-zinc-800">Confirm</button>
+        <button
+          className="px-4 py-2 rounded-lg font-bold bg-zinc-900 text-white hover:bg-zinc-800"
+          onClick={handleClickConfirm}>
+          Confirm
+        </button>
       </div>
     </>
   );

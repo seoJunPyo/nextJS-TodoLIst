@@ -5,7 +5,7 @@ const Create = () => {
   return (
     <Modal>
       <h2 className="text-center font-bold text-4xl">New Todo!</h2>
-      <TodoForm />
+      <TodoForm method="POST" />
     </Modal>
   );
 };

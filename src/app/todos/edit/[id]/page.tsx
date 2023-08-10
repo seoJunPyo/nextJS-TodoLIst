@@ -1,43 +1,23 @@
 import { TodoForm } from '@/components';
 import React from 'react';
 
-const List = [
-  {
-    id: '1',
-    title: 'HTML',
-    decs: 'HTML5 study',
-    completed: false,
-    createAt: new Date(),
-  },
-  {
-    id: '2',
-    title: 'CSS',
-    decs: 'CSS3 study',
-    completed: true,
-    createAt: new Date(),
-  },
-  {
-    id: '3',
-    title: 'javaScript',
-    decs: 'javaScript study',
-    completed: false,
-    createAt: new Date(),
-  },
-];
-
-const Detail = ({
+const Detail = async ({
   params,
 }: {
   params: {
     id: string;
   };
 }) => {
-  const { id, title, decs, completed, createAt } = List.find(({ id }) => id === params.id)!;
+  const res = await fetch(`http://localhost:3000/api/todos/${params.id}`, {
+    cache: 'no-store',
+  });
+
+  const todo: Todo = await res.json();
 
   return (
     <div className="container mx-auto my-8">
       <h2 className="text-center font-bold text-4xl">Edit Todo!</h2>
-      <TodoForm id={id} title={title} decs={decs} completed={completed} createAt={createAt} />
+      <TodoForm method="PATCH" {...todo} />
     </div>
   );
 };

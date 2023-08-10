@@ -22,8 +22,8 @@ const Todos = ({ todoList }: { todoList: Todo[] }) => {
         setFilter={setFilter}
       />
       <ul className="flex flex-col space-y-4 mt-4">
-        {filterList(todoList, filter).map(({ id, title, decs, completed, createAt }) => (
-          <TodoItem key={id} id={id} title={title} decs={decs} completed={completed} createAt={createAt} />
+        {filterList(todoList, filter).map(({ _id, title, desc, completed, createAt }) => (
+          <TodoItem key={_id} _id={_id} title={title} desc={desc} completed={completed} createAt={createAt} />
         ))}
       </ul>
     </>
