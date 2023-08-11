@@ -8,7 +8,7 @@ const filterList = (list: Todo[], filter: Filter) =>
     return filter === 'completed' ? item.completed : filter === 'active' ? !item.completed : true;
   });
 
-const Todos = ({ todoList }: { todoList: Todo[] }) => {
+const Todos = ({ todoList = [] }: { todoList: Todo[] }) => {
   const [filter, setFilter] = React.useState<Filter>('all');
   const [sort, setSort] = React.useState<Sort>('desc');
 

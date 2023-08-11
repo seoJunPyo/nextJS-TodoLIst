@@ -1,4 +1,5 @@
-import { deleteDoc, getDoc, updateDoc } from '@/service/mongodb';
+import { deleteDoc, getDoc, updateDoc } from '@/lib/mongodb';
+import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
 const GET = async (
@@ -28,8 +29,9 @@ const PATCH = async (
 ) => {
   const data = await req.json();
   await updateDoc('todos', params.id, data);
+  revalidatePath('/todos');
 
-  return NextResponse.json('success');
+  return NextResponse.json({ status: 200 });
 };
 
 const DELETE = async (
@@ -43,8 +45,9 @@ const DELETE = async (
   }
 ) => {
   await deleteDoc('todos', params.id);
+  revalidatePath('/todos');
 
-  return NextResponse.json('success');
+  return NextResponse.json({ status: 200 });
 };
 
 export { GET, PATCH, DELETE };

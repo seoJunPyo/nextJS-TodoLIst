@@ -1,4 +1,4 @@
-import { Filter, MongoClient, ObjectId, Document } from 'mongodb';
+import { Filter, MongoClient, ObjectId, Document, MatchKeysAndValues } from 'mongodb';
 
 declare global {
   // eslint-disable-next-line no-var
@@ -17,7 +17,6 @@ if (process.env.NODE_ENV === 'development') {
     mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
   }
 }
-
 const getColByName = async (collectionName: string) => {
   const client = await mongo;
   const db = client.db(DB_NAME);
@@ -41,12 +40,13 @@ const getDoc = async (collectionName: string, id: string) => {
 };
 
 const addDoc = async (collectionName: string, data: object) => {
+  console.log(collectionName);
   const col = await getColByName(collectionName);
 
   await col.insertOne(data);
 };
 
-const updateDoc = async (collectionName: string, id: string, data: object) => {
+const updateDoc = async (collectionName: string, id: string, data: MatchKeysAndValues<Document>) => {
   const col = await getColByName(collectionName);
 
   await col.updateOne(
@@ -67,7 +67,7 @@ const deleteDoc = async (collectionName: string, id: string) => {
   });
 };
 
-const updateManyDocs = async (collectionName: string, data: object) => {
+const updateManyDocs = async (collectionName: string, data: MatchKeysAndValues<Document>) => {
   const col = await getColByName(collectionName);
 
   await col.updateMany(
@@ -84,4 +84,13 @@ const deleteManyDocs = async (collectionName: string, filter: Filter<Document> |
   await col.deleteMany(filter);
 };
 
-export { getDoc, getDocs, addDoc, updateDoc, updateManyDocs, deleteDoc, deleteManyDocs };
+const getUser = async (email: string) => {
+  const col = await getColByName('user');
+  const user = await col.findOne({
+    email,
+  });
+
+  return user;
+};
+
+export { mongo, getDoc, getDocs, addDoc, updateDoc, updateManyDocs, deleteDoc, deleteManyDocs, getUser };

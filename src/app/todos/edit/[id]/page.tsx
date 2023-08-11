@@ -1,4 +1,5 @@
 import { TodoForm } from '@/components';
+import { nextFetch } from '@/util/nextFetch';
 import React from 'react';
 
 const Detail = async ({
@@ -8,11 +9,7 @@ const Detail = async ({
     id: string;
   };
 }) => {
-  const res = await fetch(`http://localhost:3000/api/todos/${params.id}`, {
-    cache: 'no-store',
-  });
-
-  const todo: Todo = await res.json();
+  const todo: Todo = await nextFetch.get(`/todos/${params.id}`);
 
   return (
     <div className="container mx-auto my-8">

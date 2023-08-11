@@ -12,10 +12,10 @@ const TechStack = [
     href: 'https://www.mongodb.com/',
   },
   {
-    src: '/JWT.svg',
-    title: 'What is JSON Web Token?',
-    decs: 'JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.',
-    href: 'https://jwt.io/',
+    src: '/next-auth.png',
+    title: 'Open Source. Full Stack. Own Your Data.',
+    decs: 'Auth.js is a set of open-source packages that are built on Web Standard APIs for authentication in modern applications with any framework on any platform in any JS runtime.',
+    href: 'https://next-auth.js.org/',
   },
   {
     src: '/AWS.svg',

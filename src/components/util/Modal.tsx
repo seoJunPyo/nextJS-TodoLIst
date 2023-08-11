@@ -18,6 +18,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
     window.addEventListener('keyup', handleKeyUp);
 
     return () => window.removeEventListener('keyup', handleKeyUp);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

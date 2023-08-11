@@ -3,7 +3,7 @@ import { TechStack } from '@/constant/TechStack';
 import { Card } from '@/components';
 import { AiFillGithub } from 'react-icons/ai';
 
-export default function Home() {
+const Home = async () => {
   return (
     <div>
       <div className="border-b-2 border-zinc-900">
@@ -23,12 +23,12 @@ export default function Home() {
           <div className="flex space-x-2 justify-center">
             <Link
               href="/auth/joinus"
-              className="p-3 bg-zinc-900 text-white rounded-lg  transition-all duration-200 hover:bg-zinc-800">
+              className="p-3 bg-zinc-900 text-white rounded-lg transition-all duration-200 hover:bg-zinc-800">
               Getting Start
             </Link>
             <Link
               href="https://github.com/seoJunPyo/nextJS-TodoLIst"
-              className="flex justify-center items-center space-x-2 p-3 border-zinc-900 border rounded-lg  cursor-pointer transition-all duration-200 hover:bg-zinc-100 ">
+              className="flex justify-center items-center space-x-2 p-3 border-zinc-900 border rounded-lg cursor-pointer transition-all duration-200 hover:bg-zinc-100">
               <span className="text-xl">
                 <AiFillGithub />
               </span>
@@ -76,4 +76,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

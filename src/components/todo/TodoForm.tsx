@@ -1,5 +1,6 @@
 'use client';
 
+import { nextFetch } from '@/util/nextFetch';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -10,14 +11,14 @@ const TodoForm = ({ _id, title, desc, method }: Partial<Todo> & { method: 'POST'
   const router = useRouter();
 
   const handleClickConfirm = async () => {
-    await fetch(`http://localhost:3000/api/todos/${_id ?? ''}`, {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: titleRef.current?.value ?? '',
-        desc: descRef.current?.value ?? '',
-      }),
-    });
+    const path = `/todos/${_id ?? ''}`;
+    const body = {
+      title: titleRef.current?.value ?? '',
+      desc: descRef.current?.value ?? '',
+    };
+
+    if (method === 'POST') await nextFetch.post(path, body);
+    if (method === 'PATCH') await nextFetch.patch(path, body);
 
     router.back();
     router.refresh();
