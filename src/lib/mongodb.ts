@@ -17,6 +17,9 @@ if (process.env.NODE_ENV === 'development') {
     mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
   }
 }
+
+console.log(process.env.MONGO_DB_URL);
+
 const getColByName = async (collectionName: string) => {
   const client = await mongo;
   const db = client.db(DB_NAME);
