@@ -6,6 +6,7 @@ import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { Select } from '..';
 import { Filter, Sort } from '@/constant/Todo';
 import { useRouter } from 'next/navigation';
+import { nextFetch } from '@/util/nextFetch';
 
 const TodoHeader = ({
   allChecked,
@@ -23,21 +24,15 @@ const TodoHeader = ({
   const router = useRouter();
 
   const handleClickCheckAll = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    await fetch('http://localhost:3000/api/todos/', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        completed: e.target.checked,
-      }),
+    await nextFetch.patch('/todos', {
+      completed: e.target.checked,
     });
 
     router.refresh();
   };
 
   const handleClickClearCompleted = async () => {
-    await fetch('http://localhost:3000/api/todos/', {
-      method: 'DELETE',
-    });
+    await nextFetch.delete('/todos');
 
     router.refresh();
   };

@@ -1,5 +1,6 @@
 'use client';
 
+import { nextFetch } from '@/util/nextFetch';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { BsCheck, BsDot } from 'react-icons/bs';
@@ -28,12 +29,8 @@ const TodoItem = ({ _id, completed, title, desc, createAt }: Todo) => {
   const router = useRouter();
 
   const handleChangeCheckBox = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    await fetch(`http://localhost:3000/api/todos/${_id ?? ''}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        completed: e.target.checked,
-      }),
+    await nextFetch.patch(`todos/${_id}`, {
+      completed: e.target.checked,
     });
 
     router.refresh();
@@ -66,9 +63,7 @@ const TodoItem = ({ _id, completed, title, desc, createAt }: Todo) => {
         <button
           className="p-3 hover:bg-zinc-100 rounded-lg"
           onClick={async () => {
-            await fetch(`http://localhost:3000/api/todos/${_id}`, {
-              method: 'DELETE',
-            });
+            await nextFetch.delete(`todos/${_id}`);
 
             router.refresh();
           }}>
