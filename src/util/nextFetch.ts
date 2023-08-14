@@ -1,4 +1,4 @@
-const BASE_URL = `${process.env.BASE_URL}/api`;
+const BASE_URL = `/api`;
 const BASE_HEADERS = { 'Content-Type': 'application/json' };
 
 class NextFetch {
