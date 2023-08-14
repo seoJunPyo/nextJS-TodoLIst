@@ -12,7 +12,10 @@ const Card = ({ src, title, decs, href }: { src: string; title: string; decs: st
       </div>
       <div className="p-6">
         <h3 className="font-bold text-lg break-words mb-2">{title}</h3>
-        <Spoiler decs={decs} />
+        <div className="hidden md:block">
+          <Spoiler decs={decs} />
+        </div>
+        <p className="md:hidden">{decs}</p>
       </div>
     </div>
   </div>

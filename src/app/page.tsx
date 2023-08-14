@@ -17,7 +17,7 @@ const Home = async () => {
               TodoList&apos;s data is stored and managed through <b>Mongodb</b>.
             </p>
             <p>
-              And it supports user authentication based on <b>JWT</b> token.
+              And it supports user authentication based on <b>Next Auth</b>.
             </p>
           </div>
           <div className="flex space-x-2 justify-center">
