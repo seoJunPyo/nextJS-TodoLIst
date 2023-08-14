@@ -7,7 +7,7 @@ type Todo = {
 };
 
 type RequestConfig = {
-  baseUrl?: string;
+  api?: string;
   headers?: HeadersInit;
 };
 

@@ -4,8 +4,6 @@ import React from 'react';
 import { BsPlusCircleDotted } from 'react-icons/bs';
 import { nextFetch } from '@/util/nextFetch';
 
-export const dynamic = 'force-dynamic';
-
 const Todos = async () => {
   const todoList: Todo[] = await nextFetch.get('/todos');
 
