@@ -18,6 +18,9 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test')
+  mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
+
 console.log(process.env.MONGO_DB_URL);
 
 const getColByName = async (collectionName: string) => {
