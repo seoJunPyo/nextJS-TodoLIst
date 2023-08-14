@@ -5,23 +5,21 @@ declare global {
   var _mongo: Promise<MongoClient>;
 }
 
-let mongo: Promise<MongoClient>;
+const mongo: Promise<MongoClient> = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
 const DB_NAME = 'demo';
 
-if (process.env.NODE_ENV === 'development') {
-  if (!global._mongo) {
-    global._mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
+// if (process.env.NODE_ENV === 'development') {
+//   if (!global._mongo) {
+//     global._mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
 
-    mongo = global._mongo;
-  } else {
-    mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
-  }
-}
+//     mongo = global._mongo;
+//   } else {
+//     mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
+//   }
+// }
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test')
-  mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
-
-console.log(process.env.MONGO_DB_URL);
+// if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test')
+//   mongo = new MongoClient(process.env.MONGO_DB_URL ?? '').connect();
 
 const getColByName = async (collectionName: string) => {
   const client = await mongo;
