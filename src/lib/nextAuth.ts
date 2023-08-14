@@ -1,9 +1,5 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { nextFetch } from '@/util/nextFetch';
-
-console.log(process.env.NEXTAUTH_URL);
-console.log(process.env.BASE_URL);
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -19,7 +15,13 @@ const authOptions: NextAuthOptions = {
         const email = credentials?.email;
         const password = credentials?.password;
 
-        const user = await nextFetch.post('/login', { email, password });
+        const res = await fetch(`${process.env.BASE_URL}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const user = await res.json();
 
         return user;
       },
