@@ -15,7 +15,7 @@ const authOptions: NextAuthOptions = {
         const email = credentials?.email;
         const password = credentials?.password;
 
-        const res = await fetch(`${process.env.BASE_URL}`, {
+        const res = await fetch(`${process.env.BASE_URL}/api/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
