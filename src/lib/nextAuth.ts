@@ -1,7 +1,9 @@
 import { NextAuthOptions } from 'next-auth';
-// import GithubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { nextFetch } from '@/util/nextFetch';
+
+console.log(process.env.NEXTAUTH_URL);
+console.log(process.env.BASE_URL);
 
 const authOptions: NextAuthOptions = {
   providers: [
