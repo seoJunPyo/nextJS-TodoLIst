@@ -1,14 +1,10 @@
 import { NextAuthOptions } from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
+// import GithubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { nextFetch } from '@/util/nextFetch';
 
 const authOptions: NextAuthOptions = {
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    }),
     CredentialsProvider({
       id: 'credentials',
       name: 'credentials',
@@ -42,6 +38,7 @@ const authOptions: NextAuthOptions = {
 
     error: '/auth/login',
   },
+
   secret: process.env.AUTH_SECRET,
 };
 
